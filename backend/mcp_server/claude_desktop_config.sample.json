@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "marketlens": {
+      "command": "python",
+      "args": ["-m", "mcp_server.server"],
+      "cwd": "/absolute/path/to/marketlens/backend",
+      "env": {
+        "MARKETLENS_DB__HOST": "localhost",
+        "MARKETLENS_DB__PORT": "5432",
+        "MARKETLENS_LLM__PROVIDER": "ollama",
+        "MARKETLENS_LLM__OLLAMA_BASE_URL": "http://localhost:11434"
+      }
+    }
+  }
+}
