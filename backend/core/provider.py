@@ -11,7 +11,9 @@ from dishka import Provider, Scope, provide
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from core.alerts.repo import AlertRepo
+from core.filings.repo import FilingRepo
 from core.journal.repo import JournalRepo
+from core.news.repo import NewsRepo
 from core.portfolio.repo import PositionRepo
 from core.securities.repo import SecurityRepo
 from core.watchlist.repo import WatchlistRepo
@@ -25,6 +27,14 @@ class RepositoryProvider(Provider):
     @provide
     def securities(self, sessionmaker: SessionMaker) -> SecurityRepo:
         return SecurityRepo(sessionmaker)
+
+    @provide
+    def filings(self, sessionmaker: SessionMaker) -> FilingRepo:
+        return FilingRepo(sessionmaker)
+
+    @provide
+    def news(self, sessionmaker: SessionMaker) -> NewsRepo:
+        return NewsRepo(sessionmaker)
 
     @provide
     def positions(self, sessionmaker: SessionMaker) -> PositionRepo:
