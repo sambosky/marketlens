@@ -16,6 +16,7 @@ from infra.http.provider import HttpClientProvider
 from infra.llm.provider import LLMProvider
 from infra.marketdata.provider import MarketDataProvider
 from settings import Settings, get_settings
+from skills.provider import RetrievalProvider, SkillProvider
 
 
 class ConfigProvider(Provider):
@@ -40,4 +41,6 @@ def make_container(settings: Settings | None = None) -> AsyncContainer:
         HttpClientProvider(),
         MarketDataProvider(),
         RepositoryProvider(),
+        RetrievalProvider(),
+        SkillProvider(),
     )
