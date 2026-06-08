@@ -21,3 +21,16 @@ def test_html_to_text_strips_tags_and_scripts():
     assert "Hello" in out and "world" in out
     assert "<" not in out
     assert "bad()" not in out
+
+
+def test_html_to_text_strips_inline_xbrl_noise():
+    html = (
+        "<ix:hidden><ix:nonFraction>9999</ix:nonFraction></ix:hidden>"
+        "<p>Our reportable segments are Graphics and Compute and Networking. "
+        "nvda:CustomerTwoMember us-gaap:SalesRevenueNet 0001045810</p>"
+    )
+    out = html_to_text(html)
+    assert "Graphics" in out and "Compute and Networking" in out
+    assert "CustomerTwoMember" not in out
+    assert "us-gaap:" not in out and "nvda:" not in out
+    assert "0001045810" not in out

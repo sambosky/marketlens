@@ -21,6 +21,7 @@ frontend/next-env.d.ts
 # Data / models
 .fastembed_cache/
 *.sqlite
+.pgdata/
 
 # OS / editor
 .DS_Store
