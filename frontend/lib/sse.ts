@@ -43,7 +43,8 @@ export async function streamAsk(
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
-    buffer += decoder.decode(value, { stream: true });
+    // sse-starlette uses CRLF; normalize so the "\n\n" event boundary matches.
+    buffer += decoder.decode(value, { stream: true }).replace(/\r/g, "");
     let idx: number;
     while ((idx = buffer.indexOf("\n\n")) !== -1) {
       const block = buffer.slice(0, idx);
