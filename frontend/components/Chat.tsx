@@ -143,7 +143,7 @@ export default function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button className="btn" disabled={busy}>
+        <button className="btn-chat" disabled={busy}>
           {busy ? "…" : "Ask"}
         </button>
       </form>
